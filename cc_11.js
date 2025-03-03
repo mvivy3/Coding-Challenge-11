@@ -67,7 +67,22 @@ listBooks(){ // Logs all books' details
     this.books.forEach(books => console.log(books.getDetails()));
 }
 }
-
+// Task 4: Implementing Book Borrowing
+lendBook(borrowerId, isbn); {
+    let book = this.books.find(bk => bk.isbn === isbn); // finds book by isbn
+    let borrower = this.borrowers.find(br => br.borrowerId === borrowerId); // finds borrower by id
+    if (!book) {
+        console.log("No book found");
+    } if (!borrower) {
+        console.log ("No borrower found");
+    } if (book.copies > 0) {
+        book.updateCopies(-1); // Reduce book copies by 1
+        borrower.borrowBook(book);
+        console.log("Book borrowed");
+    } else {
+        console.log("No copies available")
+    };
+};
 ///Test Cases
 const library = new Library();
 library.addBook(book1);
